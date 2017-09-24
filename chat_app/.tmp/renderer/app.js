@@ -24,6 +24,10 @@ var _Room = require("./Room");
 
 var _Room2 = _interopRequireDefault(_Room);
 
+var _firebaseBrowser = require("firebase/firebase-browser");
+
+var _firebaseBrowser2 = _interopRequireDefault(_firebaseBrowser);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Routing 정의 하기
@@ -47,6 +51,17 @@ var appRouting = _react2.default.createElement(
 if (!location.hash.length) {
     location.hash = "#/login";
 }
+
+// Filebase 초기화하기
+var config = {
+    apiKey: "apikey",
+    authDomain: "electron-chat-yyyy.firebaseapp.com",
+    databaseURL: "https://electron-chat-yyyy.firebaseio.com",
+    projectId: "electron-chat-yyyy",
+    storageBucket: "electron-chat-yyyy.appspot.com",
+    messagingSenderId: "id"
+};
+_firebaseBrowser2.default.initializeApp(config);
 
 // Application 렌더링하기 
 (0, _reactDom.render)(appRouting, document.getElementById("app"));
