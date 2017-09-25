@@ -30,38 +30,31 @@ var _firebaseBrowser2 = _interopRequireDefault(_firebaseBrowser);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// Routing 정의 하기
+// Firebase 초기화
+var config = {};
+_firebaseBrowser2.default.initializeApp(config);
+
+// Routing 정의
 var appRouting = _react2.default.createElement(
-    _reactRouter.Router,
-    { history: _reactRouter.hashHistory },
+  _reactRouter.Router,
+  { history: _reactRouter.hashHistory },
+  _react2.default.createElement(
+    _reactRouter.Route,
+    { path: "/" },
+    _react2.default.createElement(_reactRouter.Route, { path: "login", component: _Login2.default }),
+    _react2.default.createElement(_reactRouter.Route, { path: "signup", component: _Signup2.default }),
     _react2.default.createElement(
-        _reactRouter.Route,
-        { path: "/" },
-        _react2.default.createElement(_reactRouter.Route, { path: "login", component: _Login2.default }),
-        _react2.default.createElement(_reactRouter.Route, { path: "signup", component: _Signup2.default }),
-        _react2.default.createElement(
-            _reactRouter.Route,
-            { path: "Rooms", component: _Rooms2.default },
-            _react2.default.createElement(_reactRouter.Route, { path: ":roomId", component: _Room2.default })
-        )
+      _reactRouter.Route,
+      { path: "rooms", component: _Rooms2.default },
+      _react2.default.createElement(_reactRouter.Route, { path: ":roomId", component: _Room2.default })
     )
+  )
 );
 
 // Routing 초기화
 if (!location.hash.length) {
-    location.hash = "#/login";
+  location.hash = "#/login";
 }
 
-// Filebase 초기화하기
-var config = {
-    apiKey: "apikey",
-    authDomain: "electron-chat-yyyy.firebaseapp.com",
-    databaseURL: "https://electron-chat-yyyy.firebaseio.com",
-    projectId: "electron-chat-yyyy",
-    storageBucket: "electron-chat-yyyy.appspot.com",
-    messagingSenderId: "id"
-};
-_firebaseBrowser2.default.initializeApp(config);
-
-// Application 렌더링하기 
+// Application을 rendering하기
 (0, _reactDom.render)(appRouting, document.getElementById("app"));

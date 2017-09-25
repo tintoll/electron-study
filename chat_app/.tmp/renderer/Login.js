@@ -107,7 +107,7 @@ var Login = function (_React$Component) {
                 localStorage.userEmail = email;
                 localStorage.userPassword = password;
                 // 채팅방 목록 화면으로 이동하기
-                hashHistory.push("/rooms");
+                _reactRouter.hashHistory.push("/rooms");
             }).catch(function () {
                 // Filebase에서 로그인 오류가 발생한 경우
                 _this2.setState({ errors: ["Incorrect email or password."] });
